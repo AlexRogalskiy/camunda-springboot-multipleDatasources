@@ -1,12 +1,38 @@
 # Camunda Spring Boot Application
 Spring Boot Application using [Camunda](http://docs.camunda.org).
 
-This project demonstrates how to configure two datasources in a Springboot application with two transaction managers.
+This project demonstrates how to configure two datasources in a Camunda Springboot application with two transaction managers.
 
-### How to use
-1. Spin up a postgresql database with the provided docker-compose.yml
-2. Login to localhost:8088 (all fields: postgres) and create two databases: ``camunda`` and ``domaindata``
-3. Start the application
+## How to use it?
+
+1. Spin up a database (Postgres or MySQL)
+	``docker-compose up -d``
+2. For MySQL change the according ~DataSourceConfig.java files
+3. restart the container ``docker-compose restart``
+4. go to ``localhost:8088/`` and log into the database with the credentials provided by docker-compose.yml (all fields: postgres)
+5. create a database ``camunda`` and another ``domaindata``
+6. start the application
+7. send a POST request to ``localhost:8080/rest/order`` to create a new Order
+
+
+    {
+      "orderAmount": 500,
+      "orderNumber": "sw-26",
+      "orderFail": false,
+      "processFail": false,
+      "customer": {
+          "address": {
+              "street": "MyStreet 1",
+              "zipCode": "12345",
+              "city": "Berlin"
+          },
+          "firstName": "Paul",
+          "lastName": "Zimmer"
+      }
+    }
+
+8. You can pass whether orderFail or processFail to force an exception. That leads usually to inconsistent states after executing the OrderController. 
+To solve that one can leverage XATransactions (see branch XA) or provide eventual consistency by implementing the SAGA pattern ==> provide compensation activities. The latter approach is the most recommended one.
 
 
 #### Maven Spring Boot Plugin
