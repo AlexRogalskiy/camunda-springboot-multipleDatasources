@@ -1,9 +1,7 @@
-package org.camunda.demo.multipleDatasources;
-
-import java.util.HashMap;
-import java.util.Map;
+package org.camunda.demo.multipleDatasources.services;
 
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.demo.multipleDatasources.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,8 +14,13 @@ public class ProcessEngineService {
 	@Autowired
 	private RuntimeService runtimeService;
 
-	@Transactional(transactionManager = "camundaTransactionManager", propagation = Propagation.REQUIRED)
-	public void startOrderProcess(String businessKey, Map<String, Object> vars) {
-		runtimeService.startProcessInstanceByKey("orderProcess", vars);
+	@Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED)
+	public void startOrderProcess(String businessKey, Order order) {
+
+		runtimeService.startProcessInstanceByKey("orderProcess",
+				Variables.createVariables().putValue("orderId", order.getId()));
+		if (order.getProcessFail()) {
+			throw new RuntimeException("Process failed");
+		}
 	}
 }
