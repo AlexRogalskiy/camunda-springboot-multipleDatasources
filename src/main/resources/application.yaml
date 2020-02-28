@@ -1,7 +1,7 @@
 camunda:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/
+    url: jdbc:postgresql://localhost:5432/camunda
     username: postgres
     password: postgres
     configuration.maximum-pool-size: 30
