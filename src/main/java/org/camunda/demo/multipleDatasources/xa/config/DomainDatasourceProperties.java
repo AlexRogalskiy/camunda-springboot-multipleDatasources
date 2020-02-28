@@ -11,6 +11,16 @@ public class DomainDatasourceProperties {
 
 	private String password;
 
+	private int maxPoolSize;
+
+	public int getMaxPoolSize() {
+		return maxPoolSize;
+	}
+
+	public void setMaxPoolSize(int maxPoolSize) {
+		this.maxPoolSize = maxPoolSize;
+	}
+
 	public String getUrl() {
 		return url;
 	}

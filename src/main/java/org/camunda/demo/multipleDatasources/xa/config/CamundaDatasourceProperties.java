@@ -1,4 +1,5 @@
 package org.camunda.demo.multipleDatasources.xa.config;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "camunda.datasource")
@@ -9,6 +10,16 @@ public class CamundaDatasourceProperties {
 	private String username;
 
 	private String password;
+
+	private int maxPoolSize;
+
+	public int getMaxPoolSize() {
+		return maxPoolSize;
+	}
+
+	public void setMaxPoolSize(int maxPoolSize) {
+		this.maxPoolSize = maxPoolSize;
+	}
 
 	public String getUrl() {
 		return url;

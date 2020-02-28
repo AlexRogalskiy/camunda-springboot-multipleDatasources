@@ -1,22 +1,22 @@
 camunda:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/
+    url: jdbc:postgresql://localhost:5432/camunda
     username: postgres
     password: postgres
-    configuration.maximum-pool-size: 30
+    maxPoolSize: 30
 domain:
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/domaindata
     username: postgres
     password: postgres
-    configuration.maximum-pool-size: 30   
+    maxPoolSize: 30   
 spring:
   jpa:
     hibernate:
       ddl-auto: create
-      hbm2ddl.auto: create   
+      hbm2ddl.auto: true   
     show-sql: true
     generate-ddl: true
 
