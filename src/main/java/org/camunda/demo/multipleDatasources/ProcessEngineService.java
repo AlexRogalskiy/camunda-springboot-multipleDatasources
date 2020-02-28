@@ -1,4 +1,4 @@
-package org.camunda.demo.multipleDatasources.services;
+package org.camunda.demo.multipleDatasources;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.variable.Variables;
@@ -14,7 +14,7 @@ public class ProcessEngineService {
 	@Autowired
 	private RuntimeService runtimeService;
 
-	@Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED)
+	@Transactional(transactionManager = "camundaTransactionManager", propagation = Propagation.REQUIRED)
 	public void startOrderProcess(String businessKey, Order order) {
 
 		runtimeService.startProcessInstanceByKey("orderProcess",

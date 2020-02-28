@@ -1,4 +1,4 @@
-package org.camunda.demo.multipleDatasources.controller;
+package org.camunda.demo.multipleDatasources;
 
 import org.camunda.demo.multipleDatasources.entity.CheckOrderTask;
 import org.camunda.demo.multipleDatasources.entity.Order;
@@ -6,7 +6,6 @@ import org.camunda.demo.multipleDatasources.repository.AddressRepository;
 import org.camunda.demo.multipleDatasources.repository.CheckOrderTaskRepository;
 import org.camunda.demo.multipleDatasources.repository.CustomerRepository;
 import org.camunda.demo.multipleDatasources.repository.OrderRepository;
-import org.camunda.demo.multipleDatasources.services.ProcessEngineService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,7 +38,7 @@ public class OrderController {
 	private static Logger LOG = Logger.getLogger(OrderController.class);
 
 	@PostMapping("/order")
-	@Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED)
+	@Transactional(transactionManager = "domainTransactionManager", propagation = Propagation.REQUIRED)
 	public Long createOrder(@RequestBody() Order order) {
 		LOG.info("Received new Order " + order.getOrderNumber() + " / " + order.getCustomer().getFirstName() + " "
 				+ order.getCustomer().getLastName());
@@ -57,7 +56,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/checkOrderTask/{cotId}", method = RequestMethod.GET)
-	@Transactional(transactionManager = "transactionManager", propagation = Propagation.REQUIRED)
+	@Transactional(transactionManager = "domainTransactionManager", propagation = Propagation.REQUIRED)
 	public CheckOrderTask checkOrderTask(@PathVariable long cotId) {
 		return checkOrderTaskRepository.findById(cotId).orElseThrow();
 	}
