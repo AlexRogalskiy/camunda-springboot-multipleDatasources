@@ -18,7 +18,7 @@
     <bpmn:userTask id="Task_141nyrf" name="Check order" camunda:formKey="embedded:app:/forms/checkOrder.html">
       <bpmn:extensionElements>
         <camunda:taskListener delegateExpression="${createCheckOrderTaskListener}" event="create" id="CreateCheckOrderTaskListener" />
-        <camunda:taskListener class="${completeCheckOrderTaskListener}" event="complete" id="CompleteCheckOrderTaskListener" />
+        <camunda:taskListener delegateExpression="${completeCheckOrderTaskListener}" event="complete" id="CompleteCheckOrderTaskListener" />
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_18o7zqy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0dovlal</bpmn:outgoing>
@@ -45,7 +45,7 @@
     <bpmn:scriptTask id="Task_0n0p75q" name="Cancel Order" scriptFormat="javascript">
       <bpmn:incoming>SequenceFlow_1p39ivr</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0s4d3w8</bpmn:outgoing>
-      <bpmn:script>//throw new java.lang.Exception("Ooooops..");
+      <bpmn:script>throw new java.lang.Exception("Ooooops..");
 print('Cancel the order..');</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>

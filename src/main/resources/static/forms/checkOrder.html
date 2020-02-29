@@ -5,7 +5,7 @@
             <input type="hidden" 
             		id="cotId" 
          			cam-variable-name="cotId"
-         			cam-variable-type="String" 
+         			cam-variable-type="Long" 
          			ng-model="cotId">
         </div>
     <div class="form-group">
@@ -42,6 +42,12 @@
         <label class="control-label">Zipcode</label>
         <div class="controls">
             <input type="text" class="form-control" id="zipCode" ng-model="zipCode">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Order complete?</label>
+        <div class="controls">
+            <input type="checkbox" class="form-control" cam-variable-name="orderComplete" cam-variable-type="Boolean">
         </div>
     </div>
 
