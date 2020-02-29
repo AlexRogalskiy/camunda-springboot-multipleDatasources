@@ -1,4 +1,4 @@
-package org.camunda.demo.multipleDatasources;
+package org.camunda.demo.multipleDatasources.adapter;
 
 import java.util.logging.Logger;
 
@@ -22,8 +22,7 @@ public class LoggerDelegate implements JavaDelegate {
     
 		LOGGER.info("\n\n  ... handling order ...");
 
-		ObjectValue typedOrder = (ObjectValue)execution.getVariableTyped("order", false);
-		LOGGER.info("Order: " + typedOrder.getValueSerialized());
+		LOGGER.info("Order: " + execution.getVariable("orderId"));
   }
 
 }
