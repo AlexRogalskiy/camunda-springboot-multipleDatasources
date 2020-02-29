@@ -42,13 +42,6 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-<!-- 			<dependency> -->
-<!-- 				<groupId>com.atomikos</groupId> -->
-<!-- 				<artifactId>ate</artifactId> -->
-<!-- 				<version>5.0.6</version> -->
-<!-- 				<scope>import</scope> -->
-<!-- 				<type>pom</type> -->
-<!-- 			</dependency> -->
 		</dependencies>
 	</dependencyManagement>
 
@@ -78,13 +71,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<!-- version>42.2.5</version> -->
-			<scope>runtime</scope>
-		</dependency>
 		<!-- required to use H2 as a file based database (Otherwise it's In-Memory) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
